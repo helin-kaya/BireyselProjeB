@@ -1,0 +1,79 @@
+﻿@using CicekProjesiUI.Models
+@model CicekProfileViewModel
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_LayoutPlot.cshtml";
+}
+
+
+@if (TempData["CicekUpdate"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>DİKKAT!</strong> @TempData["CicekUpdate"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@using (Html.BeginForm("Profile", "CicekProfile", FormMethod.Post,
+    new
+    {
+        @class = "form-horizontal",
+        enctype = "multipart/form-data"
+    }))
+{
+    <div class="row">
+        <div class="col-6 offset-3 offset-3">
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+        </div>
+        <div class="col-6">
+            @if (Model.FlowerPicture == null)
+            {
+                <img src="~/Content/images/indir1.png" />
+            }
+            else
+            {
+                <img src="@Model.FlowerPicture" alt="anonim profile resmi" />
+            }
+            <br />
+            @Html.TextBoxFor(x => x.FlowerPictureUpload, new
+                 {
+                     @class = "form-control",
+                     @type = "file",
+                @id = "picture",
+                     multiple = "false"
+                 })
+        </div>
+
+        <div class="col-6">
+            <div class="row">
+                <div class="col-lg-12">
+                    <label>İsim:</label>
+                    @Html.TextBoxFor(x => x.Name, null, new { @type = "text", @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Name)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-12">
+                    <label>Description:</label>
+                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Description)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Fiyatı:</label>
+                    @Html.TextBoxFor(x => x.Price, null, new { @type = "text", @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Price)
+                </div>
+            </div>
+
+
+            <div style="margin-top:50px;">
+                <button type="submit" class="btn btn-primary container">Güncelle</button>
+            </div>
+
+        </div>
+    </div>
+}

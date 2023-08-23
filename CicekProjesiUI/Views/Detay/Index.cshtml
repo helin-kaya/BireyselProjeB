@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPlot.cshtml";
+}
+<h2>Product Details</h2>
+
+<div class="recent-listing">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="owl-carousel owl-listing">
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="listing-item">
+                                    <div class="left-image">
+                                        <a href="#"><img src="@Url.Content(@Model.FlowerPicture)" /></a>
+                                    </div>
+                                    <div class="right-content align-self-center">
+                                        <a href="#"><h4>@Model.Name</h4></a>
+                                        <ul class="rate">
+                                            <li> This product has been viewed @Model.ViewCount times.</li>
+                                        </ul>
+                                        <div class="icon"><img src="assets/images/listing-icon-01.png" alt=""><p class="price">Price: @Model.Price</p></div>
+                                        <span class="details">Details: @Model.Description</span> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

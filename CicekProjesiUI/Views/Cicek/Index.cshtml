@@ -1,0 +1,52 @@
+﻿@model List<CicekProjesiDAL.Products>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPlot.cshtml";
+}
+@section cicekprojesistyle{
+    <style>
+        .input-group .input-group-append .btn {
+            margin-left: 10px; 
+        }
+    </style>
+
+}
+
+<h2>Products</h2>
+<br />
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <form method="get" action="@Url.Action("Index", "Cicek")">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search Flower Name">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary fa fa-search">SEARCH</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="@Url.Content(product.FlowerPicture)" class="card-img-top" />
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">Price: @product.Price</p>
+                    <div class="main-white-button">
+                        <a href="@Url.Action("Index", "Detay", new { id = product.Id })"><i class="fa fa-eye"></i> View Detail</a>
+                    </div>
+                    @*<div class="main-white-button">
+                        <a href="@Url.Action("Profile", "CicekProfile", new { id = product.Id })"><i class="fa fa-eye"></i> Bilgileri düzenle</a>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
